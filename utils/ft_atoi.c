@@ -6,7 +6,7 @@
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 18:55:23 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/01 16:18:50 by ie-laabb         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:47:57 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ int	rest_nbr(const char *str, int sign, int i)
 	return (num * sign);
 }
 
+void	check(char *str, int i)
+{
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+		{
+			ft_putstr("Error\nthere is something wrong in args.\n");
+			exit(1);
+		}
+		i++;
+	}
+}
+
 int	ft_atoi(char	*str)
 {
 	long	i;
@@ -53,6 +66,7 @@ int	ft_atoi(char	*str)
 			sign = -sign;
 		i++;
 	}
+	check(str, i);
 	num = rest_nbr(str, sign, i);
 	return (num);
 }

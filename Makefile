@@ -6,10 +6,11 @@ CFLAGS = -Wall -Werror -Wextra
 
 RM = rm -f
 
-FILES = ./libft_functions/ft_atoi.c ./libft_functions/ft_lstadd_back.c\
-		./libft_functions/push.c ./libft_functions/ft_lstnew.c\
-		./libft_functions/ft_strlen.c ./libft_functions/ft_lstlast.c\
-		./libft_functions/swap.c\
+FILES = ./utils/ft_atoi.c ./utils/ft_lstadd_back.c\
+		./utils/push.c ./utils/ft_lstnew.c\
+		./utils/ft_strlen.c ./utils/ft_lstlast.c\
+		./utils/swap.c ./utils/rotate.c\
+		./utils/reverse_rotate.c\
 		push_swap.c
 
 

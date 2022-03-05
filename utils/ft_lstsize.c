@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 16:20:24 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/02 18:30:49 by ie-laabb         ###   ########.fr       */
+/*   Created: 2021/11/13 01:25:07 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/05 22:22:53 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <stdio.h>
 
-void	swap(t_list *lst1)
+int	ft_lstsize(t_list	*lst)
 {
-	int	temp;
+	int	i;
 
-	if (lst1 == NULL || lst1->next == NULL)
+	i = 0;
+	while (lst)
 	{
-		ft_putstr("khata2\n");
-		exit(1);
+		lst = lst->next;
+		i++;
 	}
-	ft_putstr("sa\n");
-	temp = lst1->content;
-	lst1->content = lst1->next->content;
-	lst1->next->content = temp;
+	return (i);
 }
