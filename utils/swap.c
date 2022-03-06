@@ -6,7 +6,7 @@
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:20:24 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/05 18:08:21 by ie-laabb         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:36:43 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	swap(t_list *lst1)
 	temp = lst1->content;
 	lst1->content = lst1->next->content;
 	lst1->next->content = temp;
+	ft_putstr("sa\n");
 }

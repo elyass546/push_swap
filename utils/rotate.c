@@ -6,7 +6,7 @@
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:34:44 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/04 17:34:36 by ie-laabb         ###   ########.fr       */
+/*   Updated: 2022/03/06 19:36:18 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	rotate(t_list **lst)
 	lst_first = (*lst)->next;
 	*lst = (*lst)->next;
 	ft_lstadd_back(lst , lst_last);
+	ft_putstr("ra\n");
 	return(0);
 }
