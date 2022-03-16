@@ -1,44 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 16:04:01 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/16 15:59:14 by ie-laabb         ###   ########.fr       */
+/*   Created: 2022/03/13 16:26:11 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/16 15:39:33 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	sort(t_list **stack1, t_list **stack2, int ac)
-{
-	if (ac == 3)
-	{
-		if ((*stack1)->content > (*stack1)->next->content)
-			swap(*stack1);
-	}
-	else if (ac == 4)
-		sort3(stack1);
-	else if (ac < 100)
-		sorts(stack1, stack2);
-	else if (ac < 500)
-	{
-		b_sort(stack1);
-		complex_sort(stack1, stack2, ft_lstsize(*stack1), 7);
-	}
-	else if (ac >= 500)
-	{
-		b_sort(stack1);
-		complex_sort(stack1, stack2, ft_lstsize(*stack1), 12);
-	}
-}
-
-void	init(t_list **lst)
-{
-	*lst = NULL;
-}
+#include "../push_swap_bonus.h"
 
 void	check_duplicat(char **av)
 {
@@ -57,6 +29,11 @@ void	check_duplicat(char **av)
 		}
 		i++;
 	}
+}
+
+void	init(t_list **lst)
+{
+	*lst = NULL;
 }
 
 void	ft_digit(int ac, char **av)
@@ -83,10 +60,29 @@ void	ft_digit(int ac, char **av)
 	}
 }
 
+void	help(t_list **stack1, t_list **stack2)
+{
+	char	*str;
+
+	str = get_next_line(0);
+	while (str)
+	{
+		check_sort(stack1, stack2, str);
+		free(str);
+		str = get_next_line(0);
+	}
+	if (!(*stack1))
+		ft_putstr("KO\n");
+	else if (is_sorted(stack1) == 1 || (*stack2))
+		ft_putstr("KO\n");
+	else
+		ft_putstr("OK\n");
+}
+
 int	main(int ac, char **av)
 {
-	t_list	*lst1;
-	t_list	*lst2;
+	t_list	*stack1;
+	t_list	*stack2;
 	int		i;
 
 	if (ac == 2)
@@ -99,15 +95,14 @@ int	main(int ac, char **av)
 	{
 		ft_digit(ac, av);
 		check_duplicat(av);
-		init(&lst1);
-		init(&lst2);
+		init(&stack1);
+		init(&stack2);
 		i = ac - 1;
 		while (i > 0)
 		{
-			push(&lst1, ft_atoi(av[i]), "n");
+			push(&stack1, ft_atoi(av[i]));
 			i--;
 		}
-		is_sorted(&lst1);
-		sort(&lst1, &lst2, ac);
+		help(&stack1, &stack2);
 	}
 }

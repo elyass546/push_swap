@@ -1,59 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   sort3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 15:40:23 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/13 22:26:12 by ie-laabb         ###   ########.fr       */
+/*   Created: 2022/03/06 15:16:31 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/12 19:52:46 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-size_t	ft_strlen(char	*str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
-}
-
-void	ft_error(void)
-{
-	write(2, "Error\n", 7);
-	exit(1);
-}
-
-void	is_sorted(t_list **stack)
+int	find_max(t_list **lst)
 {
 	t_list	*tmp;
+	int		index;
+	int		max;
+	int		i;
 
-	tmp = (*stack);
-	while (tmp->next)
+	i = 0;
+	index = 0;
+	tmp = (*lst);
+	max = tmp->content;
+	while (tmp)
 	{
-		if (tmp->content > tmp->next->content)
-			return ;
+		if (tmp->content > max)
+		{
+			max = tmp->content;
+			index = i;
+		}
 		tmp = tmp->next;
+		i++;
 	}
-	exit(1);
+	return (index);
 }
 
-int	ft_isdigit(char c)
+int	found_min(t_list **lst)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	t_list	*tmp;
+	int		index;
+	int		min;
+	int		i;
+
+	i = 0;
+	index = 0;
+	tmp = (*lst);
+	min = tmp->content;
+	while (tmp)
+	{
+		if (tmp->content < min)
+		{
+			min = tmp->content;
+			index = i;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	return (index);
 }

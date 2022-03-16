@@ -1,27 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 16:20:24 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/06 19:36:43 by ie-laabb         ###   ########.fr       */
+/*   Created: 2022/03/04 18:42:04 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/12 21:39:16 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <stdio.h>
+
+int	r_rotate(t_list **lst, char *str)
+{
+	t_list	*lst1;
+	t_list	*tmp;
+
+	if (!(*lst))
+		return (1);
+	else if ((*lst)->next == NULL)
+		return (1);
+	tmp = (*lst);
+	lst1 = ft_lstlast(*lst);
+	push(lst, lst1->content, "n");
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	free(tmp->next);
+	tmp->next = NULL;
+	ft_putstr(str);
+	return (0);
+}
+
+int	rotate(t_list **lst, char *str)
+{
+	t_list	*lst_last;
+	t_list	*lst_first;
+
+	if (!*lst)
+		return (1);
+	lst_last = *lst;
+	lst_first = (*lst)->next;
+	*lst = (*lst)->next;
+	ft_lstadd_back(lst, lst_last);
+	ft_putstr(str);
+	return (0);
+}
 
 void	swap(t_list *lst1)
 {
 	int	temp;
 
 	if (lst1 == NULL || lst1->next == NULL)
-	{
-		ft_putstr("khata2\n");
-		exit(1);
-	}
+		ft_error();
 	temp = lst1->content;
 	lst1->content = lst1->next->content;
 	lst1->next->content = temp;

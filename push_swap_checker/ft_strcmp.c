@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 01:25:07 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/06 17:11:09 by ie-laabb         ###   ########.fr       */
+/*   Created: 2022/03/13 19:47:44 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/13 22:37:45 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
-int	ft_lstsize(t_list	*lst)
+int	ft_strcmp(char *s01, char *s02)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (lst)
+	if (s01 == s02)
+		return (1);
+	while (s01[i] && s02[i])
 	{
-		lst = lst->next;
+		if (s01[i] != s02[i])
+			return (1);
 		i++;
 	}
-	return (i);
+	if ((s01[i] == '\0' && s02[i]) || (s01[i] && s02[i] == '\0'))
+		return (1);
+	return (0);
 }

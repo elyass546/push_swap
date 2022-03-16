@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 14:34:44 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/06 19:36:18 by ie-laabb         ###   ########.fr       */
+/*   Created: 2022/03/02 15:20:47 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/03/13 22:40:42 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
-int	rotate(t_list **lst)
+t_list	*ft_pop(t_list **stack)
 {
-	t_list *lst_last;
-	t_list *lst_first;
+	t_list	*node;
 
-	if (!*lst)
-		return (1);
-	lst_last = *lst;
-	lst_first = (*lst)->next;
-	*lst = (*lst)->next;
-	ft_lstadd_back(lst , lst_last);
-	ft_putstr("ra\n");
-	return(0);
+	init(&node);
+	if (!stack || !*stack)
+		return (0);
+	node = *stack;
+	*stack = (*stack)->next;
+	node->next = NULL;
+	free(node);
+	return (*stack);
+}
+
+int	push(t_list **stack, int elem)
+{
+	t_list	*new;
+
+	if (!stack)
+		return (0);
+	new = ft_lstnew(elem);
+	if (!new)
+		return (0);
+	new->next = *stack;
+	*stack = new;
+	return (1);
 }

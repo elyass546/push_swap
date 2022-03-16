@@ -6,7 +6,7 @@
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 18:55:23 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/05 17:47:57 by ie-laabb         ###   ########.fr       */
+/*   Updated: 2022/03/13 21:24:34 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,29 @@ int	rest_nbr(const char *str, int sign, int i)
 		if (sign == -1)
 		{
 			if (res / 10 != num)
-				return (0);
+				ft_error();
 		}
 		if (sign == 1)
 		{
 			if (res / 10 != num)
-				return (-1);
+				ft_error();
 		}
 		num = (str[i++] - '0') + (num * 10);
 	}
-	return (num * sign);
+	num = num * sign;
+	if (num > 2147483647 || num <= -2147483648)
+		ft_error();
+	return (num);
 }
 
 void	check(char *str, int i)
 {
+	if (!str)
+		ft_error();
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
-		{
-			ft_putstr("Error\nthere is something wrong in args.\n");
-			exit(1);
-		}
+			ft_error();
 		i++;
 	}
 }

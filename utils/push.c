@@ -6,43 +6,41 @@
 /*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:20:47 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/03/06 19:45:53 by ie-laabb         ###   ########.fr       */
+/*   Updated: 2022/03/13 19:23:06 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	push(t_list	**lst, int data, char *str)
+t_list	*ft_pop(t_list **stack)
 {
-	t_list *new;
+	t_list	*node;
 
-	if (!*lst)
-	{
-		if (!(*lst = ft_lstnew(data)))
-			return (0);
-		return (1);
-	}
-	if (!(new = ft_lstnew(data)))
-		return(0);
-	new->next = *lst;
-	*lst = new;
+	init(&node);
+	if (!stack || !*stack)
+		return (0);
+	node = *stack;
+	*stack = (*stack)->next;
+	node->next = NULL;
+	free(node);
+	return (*stack);
+}
+
+int	push(t_list **stack, int elem, char *str)
+{
+	t_list	*new;
+
+	if (!stack)
+		return (0);
+	new = ft_lstnew(elem);
+	if (!new)
+		return (0);
+	new->next = *stack;
+	*stack = new;
 	if (str[0] != 'n')
 	{
 		ft_putstr(str);
 		write(1, "\n", 1);
 	}
 	return (1);
-}
-
-t_list	*ft_pop(t_list **stack)
-{
-	t_list	*node;
-
-	node = 0;
-	if (!stack || !*stack)
-		return (0);
-	node = *stack;
-	*stack = (*stack)->next;
-	node->next = NULL;
-	return (node);
 }
